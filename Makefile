@@ -1,21 +1,19 @@
 .PHONY: default build bundle purescript setup
 
 PURS=~/.cabal/bin/purs
+#PURS=~/src/node-v7.1.0-linux-x64/bin/purs
 
-default: bundle
+default: build bundle
 
 build:
-	${PURS} compile $(shell find . -name \*purs)
+	@# ${PURS} compile $(shell find src/ bower_components/*/src/ -name \*purs)
+	pulp build
 
 bundle:
-	${PURS} bundle $(shell find output/ -name \*.js) --module Main --main Main -o docroot/package.js
-
-purescript:
-	cabal update
-	cabal install purescript
+	@# ${PURS} bundle $(shell find output/ -name \*.js) --module Main --main Main -o docroot/package.js
+	pulp browserify --optimise -t docroot/package.js
 
 setup:
-	git clone --branch v3.0.0 git@github.com:purescript/purescript-console.git dependencies/purescript-console/
-	git clone --branch v3.1.0 git@github.com:purescript/purescript-prelude.git dependencies/purescript-prelude/
-	git clone --branch v3.1.0 git@github.com:purescript/purescript-eff.git dependencies/purescript-eff/
-
+	npm install -g bower pulp
+	npm install
+	bower update

@@ -1,3 +1,4 @@
-/dependencies/
-/output/
+/bower_components/
 /docroot/package.js
+/node_modules/
+/output/
