@@ -1,21 +1,24 @@
 module Main where
 
+import Control.Monad.Eff (Eff)
 import Prelude
-import Thermite as T
-
-import React as R
 import React.DOM as R
 import React.DOM.Props as RP
-import ReactDOM as RDOM
+import Thermite as T
+import DOM (DOM) as DOM
 
-import Control.Monad.Eff.Console
+-- import Sudoku as S
 
 
 data Action = Increment | Decrement
 
+-- type State = { -- sudoku :: S.Sudoku
+             -- counter :: Int
+             -- }
 type State = { counter :: Int }
 
 initialState :: State
+-- initialState = { sudoku: S.example, counter: 0 }
 initialState = { counter: 0 }
 
 render :: T.Render State _ Action
@@ -37,8 +40,5 @@ performAction Decrement _ _ = void (T.cotransform (\state -> state { counter = s
 spec :: T.Spec _ State _ Action
 spec = T.simpleSpec performAction render
 
+main :: Eff (dom :: DOM.DOM) Unit
 main = T.defaultMain spec initialState unit
-
--- main = log "Hello, World!"
-
-
