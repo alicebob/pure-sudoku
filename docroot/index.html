@@ -2,6 +2,39 @@
 <html>
 <head>
     <meta charset="utf-8"/>
+    <style>
+.sudoku {
+}
+.sudoku > div {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 40px;
+}
+.sudoku > div > div {
+    width: 40px;
+    height: 40px;
+    line-height: 40px;
+    margin: auto;
+    text-align: center;
+    border-left: solid 1px black;
+    border-top: solid 1px black;
+}
+.sudoku .bnorth {
+    border-top: solid 2px black;
+}
+.sudoku .beast {
+    border-right: solid 2px black;
+}
+.sudoku .bsouth {
+    border-bottom: solid 2px black;
+}
+.sudoku .bwest {
+    border-left: solid 2px black;
+}
+.sudoku .clue {
+    font-weight: bold;
+}
+    </style>
 </head>
 <body>
     [index]
